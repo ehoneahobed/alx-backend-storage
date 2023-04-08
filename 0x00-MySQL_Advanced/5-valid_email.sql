@@ -3,10 +3,10 @@
 -- Context: Nothing related to MySQL, but perfect for user email validation -
 -- distribute the logic to the database itself!
 
-CREATE TRIGGER resets_valid_email AFTER UPDATE ON users
+CREATE TRIGGER resets_valid_email BEFORE UPDATE ON users
 FOR EACH ROW
 BEGIN
 	IF (NEW.email != OLD.email) THEN
-		UPDATE users SET valid_email = 0 WHERE id = NEW.id
+		SET New.valid_email = 0;
 	END IF;
 END;
